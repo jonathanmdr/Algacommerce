@@ -11,14 +11,24 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 
     @Test
     public void inserirProduto() {
-        Produto produto = new Produto();
-        produto.setId(2);
-        produto.setNome("Câmera Canon");
-        produto.setDescricao("A melhor definição para suas fotos");
-        produto.setPreco(new BigDecimal(5000));
+        Produto produto = criaProduto(2, "Câmera Canon", "A melhor definição para suas fotos", new BigDecimal(5000));
 
         entityManager.getTransaction().begin();
         entityManager.persist(produto);
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produto produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+        Assert.assertNotNull(String.format("Produto de id: %d não foi inserido na base de dados", produtoVerificacao.getId()), produtoVerificacao);
+    }
+
+    @Test
+    public void inserirProdutoComMetodoMerge() {
+        Produto produto = criaProduto(4, "Microfone Rode Videmic", "A melhor qualidade de som", new BigDecimal(1000));
+
+        entityManager.getTransaction().begin();
+        entityManager.merge(produto);
         entityManager.getTransaction().commit();
 
         entityManager.clear();
@@ -41,11 +51,7 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 
     @Test
     public void atualizarProdutoNaoGerenciado() {
-        Produto produto = new Produto();
-        produto.setId(1);
-        produto.setNome("Kindle Paperwhite");
-        produto.setDescricao("Conheça o novo kindle.");
-        produto.setPreco(new BigDecimal(599));
+        Produto produto = criaProduto(1, "Kindle Paperwhite", "Conheça o novo kindle.", new BigDecimal(599));
 
         entityManager.getTransaction().begin();
         entityManager.merge(produto);
@@ -86,6 +92,15 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 //        entityManager.remove(produto);
 
         entityManager.getTransaction().commit();
+    }
+
+    private Produto criaProduto(Integer id, String nome, String descricao, BigDecimal preco) {
+        Produto produto = new Produto();
+        produto.setId(id);
+        produto.setNome(nome);
+        produto.setDescricao(descricao);
+        produto.setPreco(preco);
+        return produto;
     }
 
 }
