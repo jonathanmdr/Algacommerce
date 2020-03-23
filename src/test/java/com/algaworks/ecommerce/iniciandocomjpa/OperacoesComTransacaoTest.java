@@ -39,6 +39,39 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         Assert.assertNull(String.format("Produto de id: %d não foi excluído", produto.getId()), produtoVerificacao);
     }
 
+    @Test
+    public void atualizarProdutoNaoGerenciado() {
+        Produto produto = new Produto();
+        produto.setId(1);
+        produto.setNome("Kindle Paperwhite");
+        produto.setDescricao("Conheça o novo kindle.");
+        produto.setPreco(new BigDecimal(599));
+
+        entityManager.getTransaction().begin();
+        entityManager.merge(produto);
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produto produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+        Assert.assertNotNull(String.format("Produto de id: %d é nulo", produto.getId()), produtoVerificacao);
+        Assert.assertEquals("Kindle Paperwhite", produtoVerificacao.getNome());
+    }
+
+    @Test
+    public void atualizarProdutoGerenciado() {
+        Produto produto = entityManager.find(Produto.class, 1);
+
+        entityManager.getTransaction().begin();
+        produto.setNome("Kindle Paperwhite 2º geração");
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produto produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+        Assert.assertEquals("Kindle Paperwhite 2º geração", produtoVerificacao.getNome());
+    }
+
     /**
      * Método somente para exemplificar uma transação
      */
