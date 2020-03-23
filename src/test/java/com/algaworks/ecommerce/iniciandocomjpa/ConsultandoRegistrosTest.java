@@ -13,7 +13,7 @@ public class ConsultandoRegistrosTest extends EntityManagerTest {
     public void buscarPorId() {
         Produto produto = entityManager.find(Produto.class, PRODUTO_ID);
 
-        Assert.assertNotNull(String.format("Produto de id: %s é nulo", PRODUTO_ID), produto);
+        Assert.assertNotNull(String.format("Produto de id: %d é nulo", PRODUTO_ID), produto);
         Assert.assertEquals("Kindle", produto.getNome());
     }
 
