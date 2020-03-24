@@ -14,7 +14,7 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 
     @Test
     public void A_inserirProduto() {
-        Produto produto = criaProduto(2, "Câmera Canon", "A melhor definição para suas fotos", new BigDecimal(5000));
+        Produto produto = criaProduto(null, "Câmera Canon", "A melhor definição para suas fotos", new BigDecimal(5000));
 
         entityManager.getTransaction().begin();
         entityManager.persist(produto);
@@ -28,10 +28,10 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 
     @Test
     public void B_inserirProdutoComMetodoMerge() {
-        Produto produto = criaProduto(4, "Microfone Rode Videmic", "A melhor qualidade de som", new BigDecimal(1000));
+        Produto produto = criaProduto(null, "Microfone Rode Videmic", "A melhor qualidade de som", new BigDecimal(1000));
 
         entityManager.getTransaction().begin();
-        entityManager.merge(produto);
+        produto = entityManager.merge(produto);
         entityManager.getTransaction().commit();
 
         entityManager.clear();
@@ -45,7 +45,7 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         /**
          * PERSIST
          */
-        Produto produtoPersist = criaProduto(5, "Smartphone One plus", "O processador mais rápido", new BigDecimal(2000));
+        Produto produtoPersist = criaProduto(null, "Smartphone One plus", "O processador mais rápido", new BigDecimal(2000));
 
         entityManager.getTransaction().begin();
         entityManager.persist(produtoPersist); //Executa insert
@@ -60,10 +60,10 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         /**
          * MERGE
          */
-        Produto produtoMerge = criaProduto(6, "Notebook Dell", "O melhor da categoria", new BigDecimal(2000));
+        Produto produtoMerge = criaProduto(null, "Notebook Dell", "O melhor da categoria", new BigDecimal(2000));
 
         entityManager.getTransaction().begin();
-        entityManager.merge(produtoMerge); //Executa um select e depois um insert
+        produtoMerge = entityManager.merge(produtoMerge); //Executa um select e depois um insert
         produtoMerge.setNome("Notebook Dell 2º geração");//Não executa um update
         entityManager.getTransaction().commit();
 

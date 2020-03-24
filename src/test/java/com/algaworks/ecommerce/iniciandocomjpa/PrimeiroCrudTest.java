@@ -12,7 +12,7 @@ public class PrimeiroCrudTest extends EntityManagerTest {
 
     @Test
     public void A_inserirCliente() {
-        Cliente cliente = criaCliente(3, "José Lucas");
+        Cliente cliente = criaCliente(null, "José Lucas");
 
         entityManager.getTransaction().begin();
         entityManager.persist(cliente);

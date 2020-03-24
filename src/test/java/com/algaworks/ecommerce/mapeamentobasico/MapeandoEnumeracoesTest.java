@@ -10,7 +10,7 @@ public class MapeandoEnumeracoesTest extends EntityManagerTest {
 
     @Test
     public void testeEnum() {
-        Cliente cliente = criaCliente(4, "José Mineiro", SexoCliente.MASCULINO);
+        Cliente cliente = criaCliente("José Mineiro", SexoCliente.MASCULINO);
 
         entityManager.getTransaction().begin();
         entityManager.persist(cliente);
@@ -22,9 +22,8 @@ public class MapeandoEnumeracoesTest extends EntityManagerTest {
         Assert.assertNotNull(String.format("Cliente de id: %d é nulo", cliente.getId()), clienteVerificacao);
     }
 
-    private Cliente criaCliente(Integer id, String nome, SexoCliente sexo) {
+    private Cliente criaCliente(String nome, SexoCliente sexo) {
         Cliente cliente = new Cliente();
-        cliente.setId(id);
         cliente.setNome(nome);
         cliente.setSexo(sexo);
         return cliente;
