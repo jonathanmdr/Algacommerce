@@ -5,12 +5,11 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.math.BigDecimal;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Produto {
+public class Cliente {
 
     @EqualsAndHashCode.Include
     @Id
@@ -18,8 +17,4 @@ public class Produto {
 
     private String nome;
 
-    private String descricao;
-
-    private BigDecimal preco;
-    
 }
