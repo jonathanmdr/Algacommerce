@@ -43,4 +43,7 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itensPedido;
 
+    @OneToOne(mappedBy = "pedido")
+    private PagamentoCartao pagamentoCartao;
+
 }

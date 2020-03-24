@@ -1,12 +1,11 @@
 package com.algaworks.ecommerce.relacionamentos;
 
 import com.algaworks.ecommerce.EntityManagerTest;
-import com.algaworks.ecommerce.model.*;
+import com.algaworks.ecommerce.model.Categoria;
+import com.algaworks.ecommerce.model.Produto;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 
 public class RelacionamentoManyToManyTest extends EntityManagerTest {
