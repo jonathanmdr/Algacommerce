@@ -5,18 +5,26 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Cliente {
+public class Pedido {
 
     @EqualsAndHashCode.Include
     @Id
     private Integer id;
 
-    private String nome;
+    private LocalDateTime dataPedido;
 
-    private SexoCliente sexo;
+    private LocalDateTime dataConclusao;
+
+    private Integer notaFiscalId;
+
+    private BigDecimal total;
+
+    private StatusPedido status;
 
 }

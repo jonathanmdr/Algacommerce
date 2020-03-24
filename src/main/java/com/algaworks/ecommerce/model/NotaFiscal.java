@@ -5,18 +5,21 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Cliente {
+public class NotaFiscal {
 
     @EqualsAndHashCode.Include
     @Id
     private Integer id;
 
-    private String nome;
+    private Integer pedidoId;
 
-    private SexoCliente sexo;
+    private String xml;
+
+    private Date dataEmissao;
 
 }
