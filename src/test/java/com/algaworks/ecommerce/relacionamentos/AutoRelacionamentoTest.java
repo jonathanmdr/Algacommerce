@@ -30,7 +30,7 @@ public class AutoRelacionamentoTest extends EntityManagerTest {
         Assert.assertNotNull(String.format("Categoria de id: %d não tem categoria pai vinculada", categoriaFilha.getId()), categoriaFilhaVerificacao);
 
         Categoria categoriaPaiVerificacao = entityManager.find(Categoria.class, categoriaPai.getId());
-        Assert.assertFalse(String.format("Categoria de id: %d não tem categorias associadas", categoriaPai.getId()), categoriaPaiVerificacao.getCategorias().isEmpty());
+        Assert.assertFalse(String.format("Categoria de id: %d não tem categorias filhas associadas", categoriaPai.getId()), categoriaPaiVerificacao.getCategorias().isEmpty());
     }
 
 }
