@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -38,5 +39,8 @@ public class Pedido {
 
     @Embedded
     private EnderecoEntregaPedido enderecoEntrega;
+
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itensPedido;
 
 }
