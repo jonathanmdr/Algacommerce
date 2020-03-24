@@ -3,14 +3,17 @@ package com.algaworks.ecommerce.iniciandocomjpa;
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Produto;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.math.BigDecimal;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OperacoesComTransacaoTest extends EntityManagerTest {
 
     @Test
-    public void inserirProduto() {
+    public void A_inserirProduto() {
         Produto produto = criaProduto(2, "Câmera Canon", "A melhor definição para suas fotos", new BigDecimal(5000));
 
         entityManager.getTransaction().begin();
@@ -24,7 +27,7 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     }
 
     @Test
-    public void inserirProdutoComMetodoMerge() {
+    public void B_inserirProdutoComMetodoMerge() {
         Produto produto = criaProduto(4, "Microfone Rode Videmic", "A melhor qualidade de som", new BigDecimal(1000));
 
         entityManager.getTransaction().begin();
@@ -38,7 +41,7 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     }
 
     @Test
-    public void inserirProdutoDiferencaEntrePersistEMerge() {
+    public void C_inserirProdutoDiferencaEntrePersistEMerge() {
         /**
          * PERSIST
          */
@@ -71,7 +74,7 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     }
 
     @Test
-    public void removerProduto() {
+    public void D_removerProduto() {
         Produto produto = entityManager.find(Produto.class, 3);
 
         entityManager.getTransaction().begin();
@@ -83,7 +86,7 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     }
 
     @Test
-    public void atualizarProdutoNaoGerenciado() {
+    public void E_atualizarProdutoNaoGerenciado() {
         Produto produto = criaProduto(1, "Kindle Paperwhite", "Conheça o novo kindle.", new BigDecimal(599));
 
         entityManager.getTransaction().begin();
@@ -98,7 +101,22 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     }
 
     @Test
-    public void atualizarProdutoGerenciado() {
+    public void F_impedirAtualizacaoDeProdutoNoBancoDeDados() {
+        Produto produto = entityManager.find(Produto.class, 1);
+        entityManager.detach(produto);
+
+        entityManager.getTransaction().begin();
+        produto.setNome("Kindle Paperwhite 2º geração");
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produto produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+        Assert.assertEquals("Kindle Paperwhite", produtoVerificacao.getNome());
+    }
+
+    @Test
+    public void G_atualizarProdutoGerenciado() {
         Produto produto = entityManager.find(Produto.class, 1);
 
         entityManager.getTransaction().begin();
@@ -111,26 +129,11 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         Assert.assertEquals("Kindle Paperwhite 2º geração", produtoVerificacao.getNome());
     }
 
-    @Test
-    public void impedirAtualizacaoDeProdutoNoBancoDeDados() {
-        Produto produto = entityManager.find(Produto.class, 1);
-        entityManager.detach(produto);
-
-        entityManager.getTransaction().begin();
-        produto.setNome("Kindle Paperwhite 2º geração");
-        entityManager.getTransaction().commit();
-
-        entityManager.clear();
-
-        Produto produtoVerificacao = entityManager.find(Produto.class, produto.getId());
-        Assert.assertEquals("Kindle", produtoVerificacao.getNome());
-    }
-
     /**
      * Método somente para exemplificar uma transação
      */
     @Test
-    public void abrirEFecharATransacao() {
+    public void H_abrirEFecharATransacao() {
 //        Produto produto = new Produto();
 
         entityManager.getTransaction().begin();
