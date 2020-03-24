@@ -3,9 +3,7 @@ package com.algaworks.ecommerce.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -19,6 +17,7 @@ public class Cliente {
 
     private String nome;
 
+    @Enumerated(EnumType.STRING)
     private SexoCliente sexo;
 
 }

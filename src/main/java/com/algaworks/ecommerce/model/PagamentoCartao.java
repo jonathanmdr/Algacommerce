@@ -3,10 +3,7 @@ package com.algaworks.ecommerce.model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -21,6 +18,7 @@ public class PagamentoCartao {
     @Column(name = "pedido_id")
     private Integer pedidoId;
 
+    @Enumerated(EnumType.STRING)
     private StatusPagamento status;
 
     private String numero;
