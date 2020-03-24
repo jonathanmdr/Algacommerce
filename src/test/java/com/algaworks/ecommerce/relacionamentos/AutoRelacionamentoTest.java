@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class AutoRelacionamentoTest extends EntityManagerTest {
 
     @Test
-    public void verificarRelacionamentoDeClienteComPedido() {
+    public void verificarAutoRelacionamento() {
         Categoria categoriaPai = new Categoria();
         categoriaPai.setNome("Eletrônicos");
 
