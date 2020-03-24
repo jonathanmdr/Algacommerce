@@ -38,6 +38,39 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     }
 
     @Test
+    public void inserirProdutoDiferencaEntrePersistEMerge() {
+        /**
+         * PERSIST
+         */
+        Produto produtoPersist = criaProduto(5, "Smartphone One plus", "O processador mais rápido", new BigDecimal(2000));
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(produtoPersist); //Executa insert
+        produtoPersist.setNome("Smartphone Two plus"); //Executa update
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produto produtoVerificacaoPersist = entityManager.find(Produto.class, produtoPersist.getId());
+        Assert.assertNotNull(String.format("Produto de id: %d não foi inserido na base de dados", produtoVerificacaoPersist.getId()), produtoVerificacaoPersist);
+
+        /**
+         * MERGE
+         */
+        Produto produtoMerge = criaProduto(6, "Notebook Dell", "O melhor da categoria", new BigDecimal(2000));
+
+        entityManager.getTransaction().begin();
+        entityManager.merge(produtoMerge); //Executa um select e depois um insert
+        produtoMerge.setNome("Notebook Dell 2º geração");//Não executa um update
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        Produto produtoVerificacaoMerge = entityManager.find(Produto.class, produtoMerge.getId());
+        Assert.assertNotNull(String.format("Produto de id: %d não foi inserido na base de dados", produtoVerificacaoMerge.getId()), produtoVerificacaoMerge);
+    }
+
+    @Test
     public void removerProduto() {
         Produto produto = entityManager.find(Produto.class, 3);
 
