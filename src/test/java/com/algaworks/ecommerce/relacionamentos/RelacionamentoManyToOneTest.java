@@ -54,7 +54,7 @@ public class RelacionamentoManyToOneTest extends EntityManagerTest {
 
         entityManager.clear();
 
-        ItemPedido itemPedidoVerificacao = entityManager.find(ItemPedido.class, itemPedido.getId());
+        ItemPedido itemPedidoVerificacao = entityManager.find(ItemPedido.class, new ItemPedidoId(pedido.getId(), produto.getId()));
         Assert.assertNotNull(String.format("Pedido de id: %d é nulo", pedido.getId()), itemPedidoVerificacao.getPedido());
         Assert.assertNotNull(String.format("Produto de id: %d é nulo", produto.getId()), itemPedidoVerificacao.getPrecoProduto());
     }
