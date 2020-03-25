@@ -1,5 +1,6 @@
 package com.algaworks.ecommerce.model;
 
+import com.mysql.cj.util.StringUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,10 +20,23 @@ public class Cliente {
 
     private String nome;
 
+    @Transient
+    private String primeiroNome;
+
     @Enumerated(EnumType.STRING)
     private SexoCliente sexo;
 
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos;
+
+    @PostLoad
+    private void pegaPrimeiroNome() {
+        if (!StringUtils.isNullOrEmpty(nome)) {
+            int index = nome.indexOf(" ");
+            if (index > -1) {
+                primeiroNome = nome.substring(0, index);
+            }
+        }
+    }
 
 }
