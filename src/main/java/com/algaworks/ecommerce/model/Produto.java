@@ -40,4 +40,10 @@ public class Produto {
     @Column(name = "data_atualizacao", insertable = false)
     private LocalDateTime dataAtualizacao;
 
+    @ElementCollection
+    @CollectionTable(name = "produto_tag",
+            joinColumns = @JoinColumn(name = "produto_id"))
+    @Column(name = "tag")
+    private List<String> tags;
+
 }
