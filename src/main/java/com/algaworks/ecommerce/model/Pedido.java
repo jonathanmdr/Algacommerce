@@ -42,7 +42,7 @@ public class Pedido extends EntidadeBaseInteger {
     private List<ItemPedido> itensPedido;
 
     @OneToOne(mappedBy = "pedido")
-    private PagamentoCartao pagamentoCartao;
+    private Pagamento pagamento;
 
     public void calcularTotalPedido() {
         if (itensPedido != null) {

@@ -24,7 +24,7 @@ public class GerenciamentoTransacoesTest extends EntityManagerTest {
 
         pedido.setStatus(StatusPedido.PAGO);
 
-        if (pedido.getPagamentoCartao() == null) {
+        if (pedido.getPagamento() == null) {
             throw new RuntimeException("Pagamento do pedido ainda não foi efetuado");
         }
     }
