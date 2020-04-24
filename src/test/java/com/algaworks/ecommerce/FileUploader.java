@@ -1,6 +1,5 @@
 package com.algaworks.ecommerce;
 
-import com.algaworks.ecommerce.mapeamentoavancado.SalvandoArquivosTest;
 import lombok.experimental.UtilityClass;
 
 import java.io.IOException;
@@ -10,7 +9,7 @@ public class FileUploader {
 
     public static byte[] carregarArquivo(String filePath) {
         try {
-            return SalvandoArquivosTest.class.getResourceAsStream(filePath).readAllBytes();
+            return FileUploader.class.getResourceAsStream(filePath).readAllBytes();
         } catch(IOException ex) {
             throw new RuntimeException(ex);
         }

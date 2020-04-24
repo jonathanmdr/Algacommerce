@@ -25,6 +25,9 @@ public class Produto {
 
     private BigDecimal preco;
 
+    @Lob
+    private byte[] foto;
+
     @ManyToMany
     @JoinTable(name = "produto_categoria",
         joinColumns = @JoinColumn(name = "produto_id"),
@@ -50,5 +53,15 @@ public class Produto {
     @CollectionTable(name = "produto_atributo",
             joinColumns = @JoinColumn(name = "produto_id"))
     private List<Atributo> atributos;
+
+    @PrePersist
+    private void preencheDataCriacao() {
+        this.dataCriacao = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    private void preencheDataAtualizacao() {
+        this.dataAtualizacao = LocalDateTime.now();
+    }
 
 }
