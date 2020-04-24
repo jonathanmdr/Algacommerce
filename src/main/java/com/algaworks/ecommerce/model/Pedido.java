@@ -2,7 +2,6 @@ package com.algaworks.ecommerce.model;
 
 import com.algaworks.ecommerce.listner.GerarNotaFiscalListner;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -10,16 +9,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @EntityListeners({GerarNotaFiscalListner.class})
 @Entity
 @Table(name = "pedido")
-public class Pedido {
-
-    @EqualsAndHashCode.Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class Pedido extends EntidadeBaseInteger {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_id")

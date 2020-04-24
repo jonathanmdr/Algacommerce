@@ -1,20 +1,16 @@
 package com.algaworks.ecommerce.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "estoque")
-public class Estoque {
-
-    @EqualsAndHashCode.Include
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class Estoque extends EntidadeBaseInteger {
 
     @OneToOne(optional = false)
     @JoinColumn(name = "produto_id")
