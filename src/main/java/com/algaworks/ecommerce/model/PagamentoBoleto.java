@@ -2,11 +2,13 @@ package com.algaworks.ecommerce.model;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 @Data
+@DiscriminatorValue(value = "Boleto")
 @Entity
-@Table(name = "pagamento_boleto")
 public class PagamentoBoleto extends Pagamento {
 
     @Column(name = "codigo_barras")
