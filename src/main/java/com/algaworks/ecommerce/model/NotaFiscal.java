@@ -22,7 +22,8 @@ public class NotaFiscal {
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
-    private String xml;
+    @Lob
+    private byte[] xml;
 
     @Column(name = "data_emissao")
     private Date dataEmissao;

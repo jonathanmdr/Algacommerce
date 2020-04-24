@@ -1,6 +1,7 @@
 package com.algaworks.ecommerce.mapeamentoavancado;
 
 import com.algaworks.ecommerce.EntityManagerTest;
+import com.algaworks.ecommerce.FileUploader;
 import com.algaworks.ecommerce.model.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +18,7 @@ public class MapsIdTest extends EntityManagerTest {
         NotaFiscal notaFiscal = new NotaFiscal();
         notaFiscal.setPedido(pedido);
         notaFiscal.setDataEmissao(new Date());
-        notaFiscal.setXml("<xml>Teste</xml>");
+        notaFiscal.setXml(FileUploader.carregarArquivo("/nota-fiscal.xml"));
 
         entityManager.getTransaction().begin();
         entityManager.persist(notaFiscal);
