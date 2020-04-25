@@ -9,7 +9,9 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "produto")
+@Table(name = "produto",
+       uniqueConstraints = { @UniqueConstraint(name = "uk_nome", columnNames = {"nome"}) },
+       indexes = { @Index(name = "idx_nome", columnList = "nome") })
 public class Produto extends EntidadeBaseInteger {
 
     private String nome;

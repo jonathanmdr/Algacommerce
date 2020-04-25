@@ -7,7 +7,8 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "categoria")
+@Table(name = "categoria",
+       uniqueConstraints = { @UniqueConstraint(name = "uk_nome", columnNames = {"nome"}) })
 public class Categoria extends EntidadeBaseInteger {
 
     private String nome;
