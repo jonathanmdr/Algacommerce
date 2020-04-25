@@ -5,24 +5,36 @@
              version="2.2">
     <persistence-unit name="Ecommerce-PU">
         <properties>
+            <!-- Configuração de conexão com a base de dados -->
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:mysql://localhost:3306/algaworks_ecommerce?createDatabaseIfNotExist=true&amp;useTimezone=true&amp;serverTimezone=UTC"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.password" value="root"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
 
+            <!-- Configuração do padrão de geração de schema do banco de dados -->
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 
+            <!-- Configuração para utilizar os metadados e os scripts para geração do schema do banco de dados -->
             <property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
             <property name="javax.persistence.schema-generation.drop-source" value="metadata-then-script"/>
 
+            <!-- Configuração do caminho dos arquivos de geração do schema do banco de dados -->
             <property name="javax.persistence.schema-generation.create-script-source" value="META-INF/banco-de-dados/script-criacao.sql"/>
             <property name="javax.persistence.schema-generation.drop-script-source" value="META-INF/banco-de-dados/script-remocao.sql"/>
 
+            <!-- Configuração para carregar uma massa de dados iniciais no banco de dados -->
             <property name="javax.persistence.sql-load-script-source" value="META-INF/banco-de-dados/dados-iniciais.sql"/>
 
+            <!-- Configuração para exportar os scripts do schema generation para arquivos externos -->
+            <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="C:/Users/c83150a/Documents/Courses/Algacommerce"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="C:/Users/c83150a/Documents/Courses/Algacommerce"/>
+
+            <!-- Configuração do dialeto utilizado -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
 
+            <!-- Configuração para exibir e formatar o SQL no console -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
         </properties>
