@@ -15,7 +15,8 @@ import java.util.List;
 public class Pedido extends EntidadeBaseInteger {
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_id", nullable = false,
+                foreignKey = @ForeignKey(name = "fk_pedido_cliente"))
     private Cliente cliente;
 
     @Column(name = "data_criacao", updatable = false, nullable = false)
