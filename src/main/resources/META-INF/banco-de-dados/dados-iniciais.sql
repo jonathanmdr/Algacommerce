@@ -13,6 +13,6 @@ insert into pedido (id, cliente_id, data_criacao, total, status) values (2, 1, s
 insert into item_pedido (pedido_id, produto_id, preco_produto, quantidade) values (1, 1, 499.0, 2);
 insert into item_pedido (pedido_id, produto_id, preco_produto, quantidade) values (1, 1, 499.0, 1);
 
-insert into pagamento(pedido_id, status, numero_cartao, tipo_pagamento) values(2, 'PROCESSANDO', '1234', 'Cartão');
+insert into pagamento (pedido_id, status, numero_cartao, tipo_pagamento) values (2, 'PROCESSANDO', '1234', 'Cartão');
 
-insert into categoria(id, nome) values(1, 'Eletrônicos');
+insert into categoria (id, nome) values (1, 'Eletrônicos');
