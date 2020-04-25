@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-@SecondaryTable(name = "cliente_detalhe", pkJoinColumns = @PrimaryKeyJoinColumn(name = "cliente_id"))
+@SecondaryTable(name = "cliente_detalhe",
+        pkJoinColumns = @PrimaryKeyJoinColumn(name = "cliente_id"),
+        foreignKey = @ForeignKey(name = "fk_cliente_detalhe_cliente"))
 @Entity
 @Table(name = "cliente",
        uniqueConstraints = { @UniqueConstraint(name = "uk_cpf", columnNames = { "cpf" }) },
