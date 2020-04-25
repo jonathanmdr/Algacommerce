@@ -39,7 +39,7 @@ public class SalvandoArquivosTest extends EntityManagerTest {
     @Test
     public void salvaFotoProduto() {
         Produto produto = new Produto();
-        produto.setNome("Kindle");
+        produto.setNome("Kindle new paper");
         produto.setDescricao("Ótimo para leitura");
         produto.setPreco(new BigDecimal(750));
         produto.setTags(List.of("Eletrônicos", "Leitura"));

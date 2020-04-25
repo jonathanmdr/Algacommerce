@@ -2,6 +2,7 @@ package com.algaworks.ecommerce.iniciandocomjpa;
 
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Cliente;
+import com.algaworks.ecommerce.model.SexoCliente;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -12,7 +13,7 @@ public class PrimeiroCrudTest extends EntityManagerTest {
 
     @Test
     public void A_inserirCliente() {
-        Cliente cliente = criaCliente(null, "José Lucas");
+        Cliente cliente = criaCliente(null, "José Lucas", "00000000192", SexoCliente.MASCULINO);
 
         entityManager.getTransaction().begin();
         entityManager.persist(cliente);
@@ -35,12 +36,10 @@ public class PrimeiroCrudTest extends EntityManagerTest {
 
     @Test
     public void C_atualizarCliente() {
-        Cliente cliente = new Cliente();
-        cliente.setId(1);
-        cliente.setNome("Fernando Medeiros Silva");
+        Cliente cliente = criaCliente(null, "Fernando Medeiros Silva", "00000000193", SexoCliente.MASCULINO);
 
         entityManager.getTransaction().begin();
-        entityManager.merge(cliente);
+        cliente = entityManager.merge(cliente);
         entityManager.getTransaction().commit();
 
         entityManager.clear();
@@ -61,10 +60,12 @@ public class PrimeiroCrudTest extends EntityManagerTest {
         Assert.assertNull(String.format("Cliente de id: %d não foi exluído", cliente.getId()), clienteVerificacao);
     }
 
-    private Cliente criaCliente(Integer id, String nome) {
+    private Cliente criaCliente(Integer id, String nome, String cpf, SexoCliente sexoCliente) {
         Cliente cliente = new Cliente();
         cliente.setId(id);
         cliente.setNome(nome);
+        cliente.setCpf(cpf);
+        cliente.setSexo(sexoCliente);
         return cliente;
     }
 
