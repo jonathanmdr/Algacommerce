@@ -3,6 +3,7 @@ package com.algaworks.ecommerce.operacoesemcascata;
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.*;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -13,7 +14,8 @@ import java.util.Collections;
 
 public class CascadeTypePersistTest extends EntityManagerTest {
 
-    // @Test
+    @Ignore
+    @Test
     public void persistirProdutoComCategoria() {
         Produto produto = new Produto();
         produto.setDataCriacao(LocalDateTime.now());
@@ -36,7 +38,8 @@ public class CascadeTypePersistTest extends EntityManagerTest {
         Assert.assertNotNull(categoriaVerificacao);
     }
 
-    // @Test
+    @Ignore
+    @Test
     public void persistirPedidoComItens() {
         Cliente cliente = entityManager.find(Cliente.class, 1);
         Produto produto = entityManager.find(Produto.class, 1);
@@ -95,7 +98,8 @@ public class CascadeTypePersistTest extends EntityManagerTest {
         Assert.assertNotNull(pedidoVerificacao);
     }
 
-    // @Test
+    @Ignore
+    @Test
     public void persistirPedidoComCliente() {
         Cliente cliente = new Cliente();
         cliente.setDataNascimento(LocalDate.of(1980, 1, 1));
