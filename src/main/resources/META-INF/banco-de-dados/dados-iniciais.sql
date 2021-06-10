@@ -7,7 +7,7 @@ insert into cliente (id, nome, cpf) values (2, 'Marcos Mariano', '12345678901');
 insert into cliente_detalhe (cliente_id, sexo, data_nascimento) values (1, 'MASCULINO', '1990-06-22');
 insert into cliente_detalhe (cliente_id, sexo, data_nascimento) values (2, 'MASCULINO', '1990-06-22');
 
-insert into pedido (id, cliente_id, data_criacao, total, status) values (1, 1, sysdate(), 2398.0, 'AGUARDANDO');
+insert into pedido (id, cliente_id, data_criacao, total, status) values (1, 1, date_sub(sysdate(), interval 5 day), 2398.0, 'AGUARDANDO');
 insert into pedido (id, cliente_id, data_criacao, total, status) values (2, 1, sysdate(), 499.0, 'AGUARDANDO');
 
 insert into item_pedido (pedido_id, produto_id, preco_produto, quantidade) values (1, 1, 499.0, 2);
