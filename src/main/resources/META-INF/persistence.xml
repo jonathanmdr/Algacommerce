@@ -13,7 +13,7 @@
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
 
             <!-- Configuração do padrão de geração de schema do banco de dados -->
-            <property name="javax.persistence.schema-generation.database.action" value="none"/>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 
             <!-- Configuração para utilizar os metadados e os scripts para geração do schema do banco de dados -->
             <property name="javax.persistence.schema-generation.create-source" value="metadata-then-script"/>
